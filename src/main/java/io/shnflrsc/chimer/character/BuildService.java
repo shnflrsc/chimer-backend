@@ -2,28 +2,29 @@ package io.shnflrsc.chimer.character;
 
 import org.dizitart.no2.collection.Document;
 import org.dizitart.no2.collection.DocumentCursor;
+import org.dizitart.no2.common.WriteResult;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.shnflrsc.chimer.character.CharacterUtils.getMap;
+import static io.shnflrsc.chimer.character.BuildUtils.getMap;
 
 @Service
-public class CharacterService {
-    private final CharacterRepository repository;
+public class BuildService {
+    private final BuildRepository repository;
 
-    public CharacterService(CharacterRepository repository) {
+    public BuildService(BuildRepository repository) {
         this.repository = repository;
     }
 
-    public List<Character> getAllCharacters() {
-        DocumentCursor cursor = repository.getAllCharacters();
-        List<Character> characters = new ArrayList<>();
+    public List<Build> getAllBuilds() {
+        DocumentCursor cursor = repository.getAllBuilds();
+        List<Build> builds = new ArrayList<>();
 
         for (Document doc : cursor) {
-            characters.add(new Character (
+            builds.add(new Build(
                     doc.getId().toString(),
                     doc.get("timestamp", LocalDateTime.class),
                     doc.get("name", String.class),
@@ -32,10 +33,10 @@ public class CharacterService {
             ));
         }
 
-        return characters;
+        return builds;
     }
 
-    public Character create(Character createdCharacter) {
-        return repository.create(createdCharacter);
+    public WriteResult create(Build createdBuild) {
+        return repository.create(createdBuild);
     }
 }

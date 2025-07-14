@@ -5,20 +5,20 @@ import com.fasterxml.jackson.annotation.JsonView;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
-public record Character (
-        @JsonView(CharacterViews.Public.class)
+public record Build(
+        @JsonView(BuildViews.Public.class)
         String id,
 
-        @JsonView(CharacterViews.Public.class)
+        @JsonView(BuildViews.Public.class)
         LocalDateTime timestamp,
 
-        @JsonView(CharacterViews.Public.class)
+        @JsonView(BuildViews.Public.class)
         String name,
 
-        @JsonView(CharacterViews.Public.class)
+        @JsonView(BuildViews.Public.class)
         String description,
 
-        @JsonView(CharacterViews.Public.class)
+        @JsonView(BuildViews.Public.class)
         HashMap<String, Object> properties
 ) {}
 

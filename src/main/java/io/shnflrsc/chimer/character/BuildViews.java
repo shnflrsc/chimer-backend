@@ -1,5 +1,5 @@
 package io.shnflrsc.chimer.character;
 
-public class CharacterViews {
+public class BuildViews {
     public static class Public {}
 }
