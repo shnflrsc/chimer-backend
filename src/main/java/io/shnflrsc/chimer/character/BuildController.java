@@ -19,13 +19,13 @@ public class BuildController {
         this.buildService = buildService;
     }
 
-    @GetMapping("/characters")
+    @GetMapping("/builds")
     public ResponseEntity<List<Build>> getAllBuilds() {
         List<Build> builds = buildService.getAllBuilds();
         return new ResponseEntity<>(builds, HttpStatus.OK);
     }
 
-    @PostMapping("/characters")
+    @PostMapping("/builds")
     public ResponseEntity<WriteResult> createBuild(@RequestBody Build build) {
         WriteResult result = buildService.create(build);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
