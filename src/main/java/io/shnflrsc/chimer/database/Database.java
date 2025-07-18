@@ -14,7 +14,7 @@ public class Database {
             @Value("${nitrite.db.password}") String password
     ) {
         MVStoreModule storeModule = MVStoreModule.withConfig()
-                .filePath("/chimer.db")
+                .filePath("db/chimer.db")
                 .build();
 
         this.db = Nitrite.builder()

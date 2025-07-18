@@ -1,4 +1,4 @@
-package io.shnflrsc.chimer.character;
+package io.shnflrsc.chimer.build;
 
 import io.shnflrsc.chimer.database.Database;
 import org.dizitart.no2.Nitrite;
@@ -7,6 +7,8 @@ import org.dizitart.no2.collection.DocumentCursor;
 import org.dizitart.no2.collection.NitriteCollection;
 import org.dizitart.no2.common.WriteResult;
 import org.springframework.stereotype.Repository;
+
+import static org.dizitart.no2.filters.FluentFilter.where;
 
 @Repository
 public class BuildRepository {
@@ -24,11 +26,21 @@ public class BuildRepository {
         }
     }
 
+    public DocumentCursor getBuildById(String id) {
+        try (
+                NitriteCollection builds = db.getCollection("builds")
+                ) {
+            return builds.find(where("id").eq(id));
+        }
+    }
+
     public WriteResult create(Build createdBuild) {
         try (
                 NitriteCollection builds = db.getCollection("builds")
                 ) {
-            Document build = Document.createDocument("timestamp", createdBuild.timestamp())
+            Document build = Document.createDocument()
+                    .put("id", createdBuild.id())
+                    .put("timestamp", createdBuild.timestamp())
                     .put("name", createdBuild.name())
                     .put("description", createdBuild.description())
                     .put("properties", createdBuild.properties());

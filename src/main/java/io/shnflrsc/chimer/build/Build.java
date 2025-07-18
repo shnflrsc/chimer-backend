@@ -1,4 +1,4 @@
-package io.shnflrsc.chimer.character;
+package io.shnflrsc.chimer.build;
 
 import com.fasterxml.jackson.annotation.JsonView;
 

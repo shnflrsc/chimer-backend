@@ -1,4 +1,4 @@
-package io.shnflrsc.chimer.character;
+package io.shnflrsc.chimer.build;
 
 import org.dizitart.no2.collection.Document;
 import java.util.HashMap;

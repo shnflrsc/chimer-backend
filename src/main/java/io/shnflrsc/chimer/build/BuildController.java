@@ -1,4 +1,4 @@
-package io.shnflrsc.chimer.character;
+package io.shnflrsc.chimer.build;
 
 import org.dizitart.no2.common.WriteResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +23,17 @@ public class BuildController {
     public ResponseEntity<List<Build>> getAllBuilds() {
         List<Build> builds = buildService.getAllBuilds();
         return new ResponseEntity<>(builds, HttpStatus.OK);
+    }
+
+    @GetMapping("/builds/{id}")
+    public ResponseEntity<Build> getBuildById (@PathVariable String id) {
+        Build build = buildService.getBuildById(id);
+
+        if (build != null) {
+            return new ResponseEntity<>(build, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/builds")
